@@ -140,6 +140,8 @@
   .mf-label::before { content: ""; width: 28px; height: 1px; background: currentColor; }
   .mf-text { font-size: clamp(26px, 3.6vw, 50px); font-weight: 600; line-height: 1.42; letter-spacing: -.03em; color: var(--ink); max-width: 1040px; }
   .mf-text em { font-style: normal; }
+  .mf-line { display: block; }
+  @media (min-width: 961px) { .mf-text { max-width: none; } .mf-line { white-space: nowrap; } }
   /* 스크립트가 단어를 나누면: 처음엔 흐리게, 스크롤 따라 진해짐 */
   .mf-text .w { color: rgba(18,48,43,.14); transition: none; }
   .mf-text em .w { --on: var(--mint-d); }
@@ -560,7 +562,7 @@
 <section class="manifesto" aria-label="VERIX의 다짐">
   <div class="wrap">
     <span class="mf-label">OUR PROMISE</span>
-    <p class="mf-text">고객은 우리 서비스를 단 한 번 처음 만납니다. 그 처음이 <em>실망이 되지 않도록,</em> VERIX가 <em>가장 먼저 고객이 되어 봅니다.</em></p>
+    <p class="mf-text"><span class="mf-line">고객은 우리 서비스를 단 한 번 처음 만납니다.</span><span class="mf-line">그 처음이 <em>실망이 되지 않도록</em></span><span class="mf-line">VERIX가 <em>가장 먼저 고객이 되어 봅니다.</em></span></p>
   </div>
 </section>
 
