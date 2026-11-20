@@ -536,16 +536,26 @@
     }
   });
 
-  /* ---------- 6. 다짐 문장: 화면에 들어오면 단어가 하나씩 진하게 채워짐 (핵심 구절은 민트로)
-     스크롤 위치에 묶지 않고, 한 번 들어오면 같은 속도로 끝까지 채워짐 ---------- */
+  /* ---------- 6. 다짐 문장: 화면에 자리 잡으면 세 줄이 차례로 떠오르고, 단어가 하나씩 진하게 채워짐
+     (핵심 구절은 민트로). 스크롤 위치에 묶지 않고 같은 속도로 끝까지 재생되며,
+     이 화면에 다시 들어올 때마다 처음부터 다시 재생됨 ---------- */
   var mf = $('.mf-text');
   if (mf && hasSplit) {
     var mfSplit = new SplitText(mf, { type: 'words', wordsClass: 'w' });
     var mfTl = gsap.timeline({ paused: true });
+    mfTl.from('.mf-line', { y: 34, autoAlpha: 0, duration: 0.8, stagger: 0.16, ease: 'power3.out' }, 0);
     mfSplit.words.forEach(function (w, i) {
-      mfTl.to(w, { color: w.closest('em') ? '#0A8A66' : '#12302B', duration: 0.45, ease: 'power1.out' }, i * 0.11);
+      mfTl.to(w, { color: w.closest('em') ? '#0A8A66' : '#12302B', duration: 0.45, ease: 'power1.out' }, 0.25 + i * 0.11);
     });
-    ScrollTrigger.create({ trigger: mf, start: 'top 75%', once: true, onEnter: function () { mfTl.play(); } });
+    ScrollTrigger.create({
+      trigger: '.manifesto',
+      // 한 화면씩 넘기는 모드에서는 화면이 거의 자리 잡은 뒤에 시작해야 처음부터 보임
+      start: pageMode ? 'top 20%' : 'top 70%',
+      end: pageMode ? 'bottom 80%' : 'bottom 30%',
+      onEnter: function () { mfTl.restart(); },
+      onEnterBack: function () { mfTl.restart(); },
+      onLeaveBack: function () { mfTl.pause(0); }
+    });
     gsap.from('.mf-label', { x: -20, autoAlpha: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: '.manifesto', start: 'top 80%' } });
   }
 
