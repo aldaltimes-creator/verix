@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VERIX 로고 시안</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+  :root { --ink: #12302B; --mint: #2ED3A3; --mint-d: #0A8A66; --mint-l: #DFF5EC; --paper: #F4FBF8; --text-2: #3F5A54; --line: rgba(18,48,43,.1); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Pretendard Variable", Pretendard, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.6; word-break: keep-all; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 56px 24px 96px; }
+  header.top { margin-bottom: 40px; }
+  header.top small { font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .14em; color: var(--mint-d); }
+  header.top h1 { font-size: clamp(28px, 4vw, 40px); margin: 6px 0 8px; }
+  header.top p { color: var(--text-2); max-width: 680px; }
+  .now { display: flex; align-items: center; gap: 14px; margin-top: 18px; font-size: 13px; color: var(--text-2); }
+  .now .box { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px dashed var(--line); border-radius: 10px; font-family: "Space Grotesk"; font-weight: 700; letter-spacing: .06em; color: var(--ink); background: #fff; }
+  .now svg { width: 22px; height: 22px; }
+
+  .opt { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 32px; margin-bottom: 28px; display: grid; grid-template-columns: 300px 1fr; gap: 36px; }
+  .opt.rec { border: 2px solid var(--mint); box-shadow: 0 20px 50px -30px rgba(10,138,102,.5); }
+  .tag { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .1em; padding: 3px 10px; border-radius: 999px; background: var(--mint-l); color: var(--mint-d); margin-bottom: 10px; }
+  .opt.rec .tag { background: var(--mint); color: var(--ink); }
+  .opt h2 { font-family: "Space Grotesk"; font-size: 28px; line-height: 1.1; }
+  .opt h2 span { font-size: 15px; color: var(--text-2); font-family: "Pretendard Variable"; font-weight: 600; display: block; margin-top: 6px; }
+  .opt .why { margin-top: 14px; font-size: 14px; color: var(--text-2); }
+  .opt ul { margin-top: 12px; list-style: none; display: grid; gap: 6px; font-size: 13px; color: var(--text-2); }
+  .opt li::before { content: "— "; color: var(--mint-d); }
+  .hero-mark { display: grid; place-items: center; height: 200px; border-radius: 16px; background: var(--paper); margin-bottom: 14px; }
+  .hero-mark svg { width: 120px; height: 120px; }
+
+  .uses { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; align-content: start; }
+  .use { border-radius: 14px; padding: 20px; display: flex; align-items: center; justify-content: center; min-height: 110px; position: relative; }
+  .use .cap { position: absolute; left: 12px; top: 8px; font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: .1em; opacity: .55; }
+  .on-paper { background: var(--paper); color: var(--ink); }
+  .on-mint { background: var(--mint); color: var(--ink); --chk: #fff; --tile: #fff; }
+  .on-ink { background: var(--ink); color: #fff; }
+  .on-white { background: #fff; border: 1px solid var(--line); color: var(--ink); }
+  .lockup { display: inline-flex; align-items: center; gap: 12px; font-family: "Space Grotesk"; }
+  .lockup svg { width: 38px; height: 38px; }
+  .lockup b { font-size: 30px; }
+  .header-mock { grid-column: 1 / -1; justify-content: space-between; padding: 18px 24px; min-height: 0; background: rgba(244,251,248,.9); border: 1px solid var(--line); }
+  .header-mock .lockup svg { width: 26px; height: 26px; }
+  .header-mock .lockup b { font-size: 20px; }
+  .header-mock nav { display: flex; gap: 20px; font-size: 13px; color: var(--text-2); }
+  .header-mock .btn { background: var(--mint); color: var(--ink); font-weight: 700; font-size: 13px; padding: 8px 16px; border-radius: 999px; }
+  .favs { display: flex; align-items: flex-end; gap: 18px; }
+  .favs div { display: grid; justify-items: center; gap: 6px; font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--text-2); }
+  .favs .tile { display: grid; place-items: center; background: #fff; border: 1px solid var(--line); border-radius: 6px; }
+
+  /* 워드마크 스타일 (시안별) */
+  .wm-a { font-weight: 600; letter-spacing: .02em; }
+  .wm-b { font-weight: 600; letter-spacing: -.02em; text-transform: lowercase; }
+  .wm-c { font-weight: 700; letter-spacing: .01em; display: inline-flex; align-items: center; }
+  .wm-c i { display: inline-block; width: .8em; height: .72em; margin-left: .05em; }
+  .wm-c i svg { display: block; width: 100% !important; height: 100% !important; }
+  .wm-d { font-weight: 500; letter-spacing: .04em; }
+
+  @media (max-width: 860px) { .opt { grid-template-columns: 1fr; } .uses { grid-template-columns: 1fr; } .header-mock nav { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- ===== 심볼 정의 (아래에서 <use>로 재사용). 색은 currentColor + 민트 고정 ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- A. 다듬은 프레임: 둥근 모서리 브래킷 + 한 획 체크 -->
+    <symbol id="logo-a" viewBox="0 0 48 48">
+      <path d="M5 17v-5a7 7 0 0 1 7-7h5M31 5h5a7 7 0 0 1 7 7v5M43 31v5a7 7 0 0 1-7 7h-5M17 43h-5a7 7 0 0 1-7-7v-5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+      <path d="M15.5 24.5l6 6L33 18" fill="none" style="stroke:var(--chk,#2ED3A3)" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <!-- B. V-체크 타일: 민트 둥근 사각형 안에 오른쪽 획이 길게 뻗은 V(=체크) -->
+    <symbol id="logo-b" viewBox="0 0 48 48">
+      <rect x="2" y="2" width="44" height="44" rx="14" style="fill:var(--tile,#2ED3A3)"/>
+      <path d="M13 17l9 15L36 10" fill="none" stroke="#12302B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="36" cy="10" r="0" fill="#12302B"/>
+    </symbol>
+    <!-- C. X-체크: 이름의 X를 그대로 심볼로. 한 대각선 끝이 꺾여 체크가 됨 -->
+    <symbol id="logo-c" viewBox="0 0 48 48">
+      <path d="M11 11l26 26" fill="none" stroke="currentColor" stroke-width="6.4" stroke-linecap="round"/>
+      <path d="M8 27l7.5 7.5L38 11" fill="none" style="stroke:var(--chk,#2ED3A3)" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <!-- C를 워드마크의 X 자리에 넣을 때: 여백을 잘라 글자 높이에 맞춘 버전 -->
+    <symbol id="logo-c-tight" viewBox="5 7.5 36 32.5">
+      <path d="M11 11l26 26" fill="none" stroke="currentColor" stroke-width="6.4" stroke-linecap="round"/>
+      <path d="M8 27l7.5 7.5L38 11" fill="none" style="stroke:var(--chk,#2ED3A3)" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <!-- D. 검증 렌즈: 돋보기 안에 체크. '들여다보고 확인한다'를 가장 쉽게 전달 -->
+    <symbol id="logo-d" viewBox="0 0 48 48">
+      <circle cx="21" cy="21" r="14.5" fill="none" stroke="currentColor" stroke-width="3.6"/>
+      <path d="M31.5 31.5L42 42" fill="none" stroke="currentColor" stroke-width="4.4" stroke-linecap="round"/>
+      <path d="M14.5 21.5l4.5 4.5 8.5-9" fill="none" style="stroke:var(--chk,#2ED3A3)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="37" cy="9" r="3" style="fill:var(--chk,#2ED3A3)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <small>VERIX · LOGO OPTIONS</small>
+    <h1>로고 시안 4가지</h1>
+    <p>지금 로고의 "프레임 + 체크" 느낌을 다듬은 안부터 완전히 새로운 안까지 준비했어요. 실제로 쓰일 자리(헤더, 파비콘 크기, 민트·짙은 배경)에서 어떻게 보이는지 함께 확인해 보세요.</p>
+    <div class="now">지금 로고 →
+      <span class="box"><svg viewBox="0 0 48 48" fill="none"><path d="M4 15V4h11M33 4h11v11M44 33v11H33M15 44H4V33" stroke="#3D5AFE" stroke-width="4"/><path d="M14 25l7 7 13-15" stroke="#19E3B1" stroke-width="5"/></svg>VERIX</span>
+    </div>
+  </header>
+
+  <!-- C (추천) -->
+  <section class="opt rec">
+    <div>
+      <div class="hero-mark on-paper"><svg><use href="#logo-c"/></svg></div>
+      <span class="tag">C · 추천</span>
+      <h2>X-Check<span>이름의 X가 곧 체크</span></h2>
+      <p class="why">VERIX의 마지막 글자 X를 그대로 심볼로 만들었어요. 한 대각선의 끝이 꺾여 체크(✓)가 되면서 "검증 완료"를 뜻해요. 짙은 획과 민트 획 두 색이 교차해 "확인하고(✓) 표시한다(X)"는 검수의 순간을 담았어요.</p>
+      <ul><li>이름과 심볼이 한 몸이라 기억에 잘 남음</li><li>16px 파비콘에서도 형태가 또렷함</li><li>워드마크의 X 자리에 심볼을 넣어 한 덩어리로도 사용 가능</li></ul>
+    </div>
+    <div class="uses">
+      <div class="use header-mock"><span class="lockup"><svg style="color:#12302B"><use href="#logo-c"/></svg><b class="wm-c">VERI<i><svg style="color:#12302B"><use href="#logo-c-tight"/></svg></i></b></span><nav><span>하는 일</span><span>검증 방식</span><span>셀원 소개</span></nav><span class="btn">검증 요청하기</span></div>
+      <div class="use on-white"><span class="cap">기본 조합</span><span class="lockup"><svg style="color:#12302B"><use href="#logo-c"/></svg><b class="wm-a">VERIX</b></span></div>
+      <div class="use on-ink"><span class="cap">짙은 배경</span><span class="lockup"><svg style="color:#fff"><use href="#logo-c"/></svg><b class="wm-c">VERI<i><svg style="color:#fff"><use href="#logo-c-tight"/></svg></i></b></span></div>
+      <div class="use on-mint"><span class="cap">민트 배경</span><span class="lockup"><svg style="color:#12302B"><use href="#logo-c"/></svg><b class="wm-a">VERIX</b></span></div>
+      <div class="use on-paper"><span class="cap">파비콘 크기</span><div class="favs"><div><span class="tile" style="width:24px;height:24px"><svg width="16" height="16" style="color:#12302B"><use href="#logo-c"/></svg></span>16</div><div><span class="tile" style="width:40px;height:40px"><svg width="32" height="32" style="color:#12302B"><use href="#logo-c"/></svg></span>32</div><div><span class="tile" style="width:64px;height:64px"><svg width="52" height="52" style="color:#12302B"><use href="#logo-c"/></svg></span>52</div></div></div>
+    </div>
+  </section>
+
+  <!-- A -->
+  <section class="opt">
+    <div>
+      <div class="hero-mark on-paper"><svg style="color:#12302B"><use href="#logo-a"/></svg></div>
+      <span class="tag">A · 지금 로고 다듬기</span>
+      <h2>Refined Frame<span>둥글고 가벼워진 측정 프레임</span></h2>
+      <p class="why">지금 로고의 구조(측정 프레임 + 체크)는 그대로 두고, 각진 모서리를 둥글게, 선을 가늘게, 색을 짙은 초록 + 민트로 정리했어요. 로딩 화면·히어로 스캐너의 프레임과 자연스럽게 이어져요.</p>
+      <ul><li>지금 사이트 연출과 가장 잘 맞음 (바꿀 곳이 적음)</li><li>안정적이지만 새로움은 가장 적음</li></ul>
+    </div>
+    <div class="uses">
+      <div class="use header-mock"><span class="lockup"><svg style="color:#12302B"><use href="#logo-a"/></svg><b class="wm-a">VERIX</b></span><nav><span>하는 일</span><span>검증 방식</span><span>셀원 소개</span></nav><span class="btn">검증 요청하기</span></div>
+      <div class="use on-white"><span class="cap">기본 조합</span><span class="lockup"><svg style="color:#12302B"><use href="#logo-a"/></svg><b class="wm-a">VERIX</b></span></div>
+      <div class="use on-ink"><span class="cap">짙은 배경</span><span class="lockup"><svg style="color:#fff"><use href="#logo-a"/></svg><b class="wm-a">VERIX</b></span></div>
+      <div class="use on-mint"><span class="cap">민트 배경</span><span class="lockup"><svg style="color:#12302B"><use href="#logo-a"/></svg><b class="wm-a">VERIX</b></span></div>
+      <div class="use on-paper"><span class="cap">파비콘 크기</span><div class="favs"><div><span class="tile" style="width:24px;height:24px"><svg width="16" height="16" style="color:#12302B"><use href="#logo-a"/></svg></span>16</div><div><span class="tile" style="width:40px;height:40px"><svg width="32" height="32" style="color:#12302B"><use href="#logo-a"/></svg></span>32</div><div><span class="tile" style="width:64px;height:64px"><svg width="52" height="52" style="color:#12302B"><use href="#logo-a"/></svg></span>52</div></div></div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="opt">
+    <div>
+      <div class="hero-mark on-paper"><svg><use href="#logo-b"/></svg></div>
+      <span class="tag">B · 새로운 안</span>
+      <h2>V-Check Tile<span>민트 타일 안의 V = 체크</span></h2>
+      <p class="why">VERIX의 첫 글자 V와 체크(✓)를 하나로 겹쳤어요. 오른쪽 획이 길게 뻗어 V이면서 동시에 체크로 읽혀요. 둥근 민트 타일이라 앱 아이콘처럼 친근해요.</p>
+      <ul><li>가장 친근하고 앱 아이콘·프로필 사진에 강함</li><li>워드마크는 소문자 "verix"로 부드럽게</li><li>타일 형태가 흔한 편이라 개성은 C보다 약함</li></ul>
+    </div>
+    <div class="uses">
+      <div class="use header-mock"><span class="lockup"><svg><use href="#logo-b"/></svg><b class="wm-b">verix</b></span><nav><span>하는 일</span><span>검증 방식</span><span>셀원 소개</span></nav><span class="btn">검증 요청하기</span></div>
+      <div class="use on-white"><span class="cap">기본 조합</span><span class="lockup"><svg><use href="#logo-b"/></svg><b class="wm-b">verix</b></span></div>
+      <div class="use on-ink"><span class="cap">짙은 배경</span><span class="lockup"><svg><use href="#logo-b"/></svg><b class="wm-b">verix</b></span></div>
+      <div class="use on-mint"><span class="cap">민트 배경</span><span class="lockup"><svg style="filter:drop-shadow(0 0 0 #fff)"><use href="#logo-b"/></svg><b class="wm-b">verix</b></span></div>
+      <div class="use on-paper"><span class="cap">파비콘 크기</span><div class="favs"><div><span class="tile" style="width:24px;height:24px;border:0;background:none"><svg width="20" height="20"><use href="#logo-b"/></svg></span>16</div><div><span class="tile" style="width:40px;height:40px;border:0;background:none"><svg width="36" height="36"><use href="#logo-b"/></svg></span>32</div><div><span class="tile" style="width:64px;height:64px;border:0;background:none"><svg width="56" height="56"><use href="#logo-b"/></svg></span>52</div></div></div>
+    </div>
+  </section>
+
+  <!-- D -->
+  <section class="opt">
+    <div>
+      <div class="hero-mark on-paper"><svg style="color:#12302B"><use href="#logo-d"/></svg></div>
+      <span class="tag">D · 새로운 안</span>
+      <h2>Verify Lens<span>돋보기 안의 체크</span></h2>
+      <p class="why">"들여다보고 확인한다"를 가장 직관적으로 보여주는 돋보기 + 체크예요. 오른쪽 위 민트 점은 고객의 신호(VOC)를 뜻해요. 처음 보는 사람도 바로 "검증 팀"이라고 알아봐요.</p>
+      <ul><li>의미 전달이 가장 쉬움 (설명이 필요 없음)</li><li>돋보기 모티프가 흔한 편이라 차별성은 낮음</li></ul>
+    </div>
+    <div class="uses">
+      <div class="use header-mock"><span class="lockup"><svg style="color:#12302B"><use href="#logo-d"/></svg><b class="wm-d">VERIX</b></span><nav><span>하는 일</span><span>검증 방식</span><span>셀원 소개</span></nav><span class="btn">검증 요청하기</span></div>
+      <div class="use on-white"><span class="cap">기본 조합</span><span class="lockup"><svg style="color:#12302B"><use href="#logo-d"/></svg><b class="wm-d">VERIX</b></span></div>
+      <div class="use on-ink"><span class="cap">짙은 배경</span><span class="lockup"><svg style="color:#fff"><use href="#logo-d"/></svg><b class="wm-d">VERIX</b></span></div>
+      <div class="use on-mint"><span class="cap">민트 배경</span><span class="lockup"><svg style="color:#12302B"><use href="#logo-d"/></svg><b class="wm-d">VERIX</b></span></div>
+      <div class="use on-paper"><span class="cap">파비콘 크기</span><div class="favs"><div><span class="tile" style="width:24px;height:24px"><svg width="16" height="16" style="color:#12302B"><use href="#logo-d"/></svg></span>16</div><div><span class="tile" style="width:40px;height:40px"><svg width="32" height="32" style="color:#12302B"><use href="#logo-d"/></svg></span>32</div><div><span class="tile" style="width:64px;height:64px"><svg width="52" height="52" style="color:#12302B"><use href="#logo-d"/></svg></span>52</div></div></div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

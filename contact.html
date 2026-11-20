@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VERIX — 검증 요청서</title>
+<meta name="description" content="VERIX(베릭스)에 출시 전 검증, 상황별 품질 검증, 품질 교육을 요청하는 검증 요청서입니다.">
+<meta name="theme-color" content="#F4FBF8">
+<link rel="icon" href="assets/logo-symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Nanum+Gothic+Coding:wght@400;700&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="assets/cx.css">
+<style>
+  /* 타자기 느낌: 영문·숫자는 JetBrains Mono, 한글은 나눔고딕코딩 */
+  :root { --type: "JetBrains Mono", "Nanum Gothic Coding", monospace; --paper-c: #F3F1EC; --ink-type: #1E1E24; --rule: rgba(30,30,36,.16); }
+  body { background: var(--mint-l); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+  /* 책상 */
+  .desk { min-height: 100vh; padding: 120px 0 120px; position: relative;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(46,211,163,.25), transparent 60%),
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 56px 56px,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 56px 56px,
+      var(--mint-l); }
+  .desk-wrap { display: grid; grid-template-columns: minmax(0, 640px) 300px; gap: 56px; justify-content: center; align-items: start; }
+
+  /* 편지지 */
+  .letter { position: relative; background: var(--paper-c); color: var(--ink-type); font-family: var(--type); font-size: 15px; line-height: 1.7; padding: 56px 56px 48px; border-radius: 3px;
+    box-shadow: 0 40px 80px -30px rgba(18,48,43,.35), 0 2px 0 rgba(18,48,43,.06); }
+  .letter::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .lh { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: start; padding-bottom: 22px; border-bottom: 1px solid var(--rule); margin-bottom: 36px; }
+  .lh svg { width: 40px; height: 40px; }
+  .lh b { display: block; font-family: var(--display); font-size: 20px; letter-spacing: .08em; }
+  .lh span { display: block; font-size: 11px; letter-spacing: .08em; color: #6B6B76; }
+  .lh time { font-size: 12px; color: #6B6B76; white-space: nowrap; }
+  .salute { font-size: 17px; margin-bottom: 24px; }
+  .row-re { border: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-bottom: 14px; }
+  .row-re legend, .row > span { float: left; width: 118px; font-size: 12px; letter-spacing: .06em; color: #6B6B76; }
+  .row-re legend { padding: 0; margin-right: 2px; line-height: 32px; }
+  .opt { position: relative; }
+  .opt input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .opt span { display: inline-block; padding: 4px 12px; border: 1px dashed rgba(30,30,36,.35); border-radius: 999px; font-size: 13px; transition: background .2s, color .2s, border-color .2s; }
+  .opt input:checked + span { background: var(--ink-type); color: var(--paper-c); border-style: solid; border-color: var(--ink-type); }
+  .opt input:focus-visible + span { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .row { display: flex; align-items: baseline; gap: 2px; margin-bottom: 8px; }
+  .row input { flex: 1; min-width: 0; font: inherit; color: inherit; background: transparent; border: 0; border-bottom: 1px solid var(--rule); padding: 6px 2px; }
+  .letter input:focus, .letter textarea:focus { outline: none; border-color: var(--blue); }
+  .letter ::placeholder { color: #A3A3AC; }
+  .body { display: block; margin: 28px 0 8px; }
+  .body textarea { width: 100%; font: inherit; color: inherit; border: 0; resize: vertical; background: transparent; line-height: 34px; padding: 0 2px; min-height: 340px;
+    background-image: linear-gradient(transparent 33px, var(--rule) 33px, var(--rule) 34px); background-size: 100% 34px; background-attachment: local; }
+  .closing { margin-top: 30px; font-size: 16px; }
+  .sign { position: relative; margin-top: 10px; height: 110px; border-bottom: 1px solid var(--rule); }
+  .sign canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; touch-action: none; }
+  .sign-hint { position: absolute; left: 2px; bottom: 6px; font-size: 12px; color: #A3A3AC; pointer-events: none; transition: opacity .3s; }
+  .sign.signed .sign-hint { opacity: 0; }
+  .sign-clear { position: absolute; right: 0; bottom: 6px; font: inherit; font-size: 11px; color: #6B6B76; background: none; border: 0; cursor: pointer; text-decoration: underline; }
+  .name { margin-top: 14px; font: inherit; font-size: 18px; color: inherit; background: transparent; border: 0; border-bottom: 1px solid transparent; padding: 4px 2px; width: 60%; }
+  .foot-note { margin-top: 26px; font-size: 11px; letter-spacing: .08em; color: #6B6B76; }
+  .foot-note .ok { color: #0FA67F; }
+  .actions { display: flex; align-items: center; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
+  .send { font-family: var(--sans); font-weight: 700; font-size: 15px; color: #fff; background: var(--ink-type); border: 0; border-radius: 8px; padding: 12px 22px; cursor: pointer; transition: background .2s; }
+  .send:hover { background: var(--mint-d); }
+  .form-msg { font-size: 12px; color: #D7263D; }
+  .invalid { box-shadow: 0 2px 0 #D7263D; }
+
+  /* 접수 완료 안내 (편지가 날아간 자리) */
+  .sent { display: none; background: var(--paper-c); color: var(--ink-type); font-family: var(--type); padding: 48px; border-radius: 3px; text-align: center; box-shadow: 0 40px 80px -30px rgba(18,48,43,.35); }
+  .sent h2 { font-family: var(--sans); font-size: 26px; margin: 14px 0 8px; }
+  .sent p { font-size: 13px; color: #6B6B76; }
+  .sent .demo { margin-top: 14px; color: #B57800; }
+  .sent button { margin-top: 24px; }
+
+  /* 접수증 */
+  .receipt { position: relative; padding-top: 18px; }
+  .clip { position: absolute; left: 22px; top: 0; width: 16px; height: 46px; border: 2.5px solid #A9B0C2; border-radius: 8px; z-index: 2; }
+  .clip::after { content: ""; position: absolute; left: 2px; right: 2px; top: 8px; bottom: -4px; border: 2.5px solid #A9B0C2; border-top: 0; border-radius: 0 0 6px 6px; }
+  .rc { position: relative; background: var(--paper-c); color: var(--ink-type); font-family: var(--type); font-size: 11px; padding: 26px 22px 20px;
+    --z: 6px; clip-path: polygon(0 var(--z), 4% 0, 8% var(--z), 12% 0, 16% var(--z), 20% 0, 24% var(--z), 28% 0, 32% var(--z), 36% 0, 40% var(--z), 44% 0, 48% var(--z), 52% 0, 56% var(--z), 60% 0, 64% var(--z), 68% 0, 72% var(--z), 76% 0, 80% var(--z), 84% 0, 88% var(--z), 92% 0, 96% var(--z), 100% 0, 100% 100%, 0 100%);
+    box-shadow: 0 30px 60px -30px rgba(18,48,43,.35); }
+  .rc-head b { display: block; font-size: 13px; letter-spacing: .04em; }
+  .rc-head span { color: #6B6B76; letter-spacing: .06em; }
+  .rc dl { margin: 16px 0; border-top: 1px dashed rgba(30,30,36,.35); }
+  .rc dl div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--rule); }
+  .rc dt { color: #6B6B76; letter-spacing: .06em; white-space: nowrap; }
+  .rc dd { text-align: right; font-weight: 700; overflow: hidden; }
+  .barcode { display: flex; align-items: stretch; height: 40px; gap: 0; margin-top: 4px; }
+  .barcode i { display: block; background: var(--ink-type); }
+  .rc-no { display: block; margin-top: 6px; letter-spacing: .2em; text-align: center; }
+  .tear { margin: 16px -22px 12px; border-top: 1px dashed rgba(30,30,36,.4); position: relative; }
+  .tear::before { content: "✂"; position: absolute; left: 10px; top: -9px; font-size: 12px; color: #6B6B76; background: var(--paper-c); padding: 0 4px; }
+  .keep { letter-spacing: .1em; color: #6B6B76; }
+  .rc-stamp { position: absolute; right: 16px; bottom: 58px; transform: rotate(-14deg); opacity: 0; border: 2.5px solid #0FA67F; color: #0FA67F; border-radius: 6px; padding: 6px 12px; font-family: var(--mono); font-weight: 700; font-size: 16px; letter-spacing: .14em; box-shadow: inset 0 0 0 2px var(--paper-c), inset 0 0 0 3.5px #0FA67F; background: rgba(243,241,236,.85); }
+  .rc-demo { display: none; margin-top: 10px; color: #B57800; }
+  .print { display: none; margin-top: 14px; width: 100%; }
+
+  @media (max-width: 960px) {
+    .desk { padding: 100px 0 80px; }
+    .desk-wrap { grid-template-columns: 1fr; gap: 40px; justify-items: center; }
+    .letter, .sent { width: 100%; }
+    .receipt { width: min(300px, 100%); }
+  }
+  @media (max-width: 600px) {
+    .letter { padding: 36px 22px 32px; font-size: 14px; }
+    .lh { grid-template-columns: auto 1fr; }
+    .lh time { grid-column: 1 / -1; }
+    .row-re legend, .row > span { float: none; width: 100%; line-height: 1.6; }
+    .row { flex-direction: column; align-items: stretch; }
+    .name { width: 100%; }
+  }
+  @media print {
+    .site-header, .letter, .sent, .print { display: none !important; }
+    body, .desk { background: #fff; padding: 0; }
+    .desk-wrap { display: block; }
+    .rc { box-shadow: none; clip-path: none; border: 1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="VERIX 홈">
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M11 11l26 26" stroke="#12302B" stroke-width="6.4" stroke-linecap="round"/><path d="M8 27l7.5 7.5L38 11" stroke="#2ED3A3" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      VERIX <small>CX QUALITY TEAM</small>
+    </a>
+    <nav class="nav">
+      <a href="index.html#services">하는 일</a><a href="index.html#process">검증 방식</a><a href="index.html#standard">품질 기준</a><a href="index.html#annual">연간 업무</a><a href="index.html#team">셀원 소개</a><a href="brand-guide.html">브랜드 가이드</a>
+    </nav>
+    <a class="btn btn-primary" href="contact.html" aria-current="page">검증 요청하기</a>
+  </div>
+</header>
+
+<div id="smooth-wrapper"><div id="smooth-content">
+<main class="desk">
+  <h1 class="sr-only">VERIX 검증 요청서</h1>
+  <div class="wrap desk-wrap">
+
+    <form class="letter" id="req-form" novalidate>
+      <header class="lh">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M11 11l26 26" stroke="#12302B" stroke-width="6.4" stroke-linecap="round"/><path d="M8 27l7.5 7.5L38 11" stroke="#2ED3A3" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="type">
+          <b>VERIX</b>
+          <span>CX 품질 검증팀 · VERIFY + EXPERIENCE</span>
+          <span>사내 CX 품질 조직 · 영업일 2일 안에 회신</span>
+        </div>
+        <time class="type" id="today"></time>
+      </header>
+
+      <p class="salute type">VERIX 팀에게,</p>
+
+      <fieldset class="row-re" id="f-kind">
+        <legend>요청 ::</legend>
+        <label class="opt"><input type="radio" name="kind" value="release" required><span>출시 전 검증</span></label>
+        <label class="opt"><input type="radio" name="kind" value="context"><span>상품·현장·과제 검증</span></label>
+        <label class="opt"><input type="radio" name="kind" value="ai"><span>AI 협업 검증</span></label>
+        <label class="opt"><input type="radio" name="kind" value="levelup"><span>리포트·교육</span></label>
+        <label class="opt"><input type="radio" name="kind" value="hello"><span>그냥 문의</span></label>
+      </fieldset>
+      <fieldset class="row-re">
+        <legend>구분 ::</legend>
+        <label class="opt"><input type="radio" name="ptype" value="일반 프로젝트" checked><span>일반 프로젝트</span></label>
+        <label class="opt"><input type="radio" name="ptype" value="SI 프로젝트"><span>SI 프로젝트</span></label>
+      </fieldset>
+
+      <label class="row"><span>보내는 팀 ::</span><input name="team" autocomplete="organization" placeholder="소속 팀"></label>
+      <label class="row"><span>회신 받을 곳 ::</span><input type="email" name="email" autocomplete="email" placeholder="name@company.com" required></label>
+      <label class="row"><span>출시 예정일 ::</span><input type="date" name="due"></label>
+
+      <label class="body"><span class="sr-only">요청 내용</span>
+        <textarea name="body" required placeholder="무엇을 검증하면 될까요? 서비스 이름, 확인이 필요한 화면이나 현장, 특히 걱정되는 부분을 적어 주세요."></textarea>
+      </label>
+
+      <p class="closing">감사합니다.</p>
+      <div class="sign" id="sign">
+        <canvas id="sig" aria-label="서명란. 마우스나 손가락으로 서명하세요."></canvas>
+        <span class="sign-hint">여기에 서명</span>
+        <button type="button" class="sign-clear">서명 지우기</button>
+      </div>
+      <input class="name" name="name" autocomplete="name" placeholder="이름" required aria-label="이름">
+
+      <p class="foot-note">회신은 한 번, 영업일 2일 안에 · <span id="sign-state">아직 서명 전</span></p>
+      <div class="actions">
+        <button type="submit" class="send">요청서 보내기</button>
+        <span class="form-msg" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+
+    <div class="sent" id="sent" aria-live="polite">
+      <svg viewBox="0 0 48 48" fill="none" width="48" height="48" aria-hidden="true" style="margin:0 auto"><path d="M11 11l26 26" stroke="#12302B" stroke-width="6.4" stroke-linecap="round"/><path d="M8 27l7.5 7.5L38 11" stroke="#2ED3A3" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h2>요청서가 접수됐어요</h2>
+      <p>접수번호 <b id="sent-no"></b> · 회신 예정 <b id="sent-reply"></b></p>
+      <p class="demo" id="sent-demo">시안 모드라 실제로 전송되지는 않았어요. (contact.js의 받는 주소를 설정하면 메일로 보내집니다)</p>
+      <button type="button" class="send" id="again">새 요청서 쓰기</button>
+    </div>
+
+    <aside class="receipt" aria-label="접수증">
+      <span class="clip" aria-hidden="true"></span>
+      <div class="rc">
+        <div class="rc-head"><b>VERIX :: 검증 접수</b><span>INTAKE · COUNTER 01</span></div>
+        <dl>
+          <div><dt>요청</dt><dd id="rc-kind">—</dd></div>
+          <div><dt>구분</dt><dd id="rc-type">일반 프로젝트</dd></div>
+          <div><dt>보낸 팀</dt><dd id="rc-team">—</dd></div>
+          <div><dt>출시 예정</dt><dd id="rc-due">—</dd></div>
+          <div><dt>접수일</dt><dd id="rc-recv">—</dd></div>
+          <div><dt>회신 예정</dt><dd id="rc-reply">—</dd></div>
+          <div><dt>상태</dt><dd id="rc-status">작성 전</dd></div>
+        </dl>
+        <div class="barcode" id="rc-barcode" aria-hidden="true"></div>
+        <span class="rc-no" id="rc-no">VX-──────-───</span>
+        <div class="tear" aria-hidden="true"></div>
+        <p class="keep">이 부분을 보관하세요</p>
+        <p class="rc-demo" id="rc-demo">시안 모드 · 실제 전송 안 됨</p>
+        <div class="rc-stamp" aria-hidden="true">RECEIVED</div>
+      </div>
+      <button type="button" class="btn btn-ghost print" id="print">접수증 인쇄</button>
+    </aside>
+
+  </div>
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <span class="logo"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M11 11l26 26" stroke="#12302B" stroke-width="6.4" stroke-linecap="round"/><path d="M8 27l7.5 7.5L38 11" stroke="#2ED3A3" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/></svg>VERIX</span>
+    <span>사내 CX 품질 검증 조직 · <a href="brand-guide.html" style="text-decoration:underline">브랜드 가이드</a></span>
+  </div>
+</footer>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="assets/motion.js"></script>
+<script src="assets/contact.js"></script>
+</body>
+</html>

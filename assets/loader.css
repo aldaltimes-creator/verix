@@ -1,0 +1,45 @@
+/* 첫 진입 로딩 화면
+   민트빛 화면 가운데에서 X-Check 로고가 그려지고, 창문이 열리며 사이트가 드러나는 동안
+   로고는 헤더 왼쪽 로고 자리로 날아가 앉음. */
+.cx-loading { overflow: hidden; }
+
+.cx-loader {
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center;
+  overflow: hidden; cursor: pointer;
+  /* 스크립트가 실패해도 10초 뒤에는 저절로 사라지도록 하는 안전장치 */
+  animation: cx-loader-failsafe .4s ease 10s forwards;
+}
+@keyframes cx-loader-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+
+/* 창문: 이 상자 바깥은 큰 그림자로 덮이고, 상자 안쪽은 투명해서 사이트가 비침 */
+.cx-window {
+  position: absolute; left: 50%; top: 50%;
+  width: 0; height: 0;
+  translate: -50% -50%;
+  box-shadow: 0 0 0 150vmax var(--mint-l);
+  border-radius: 2px;
+}
+
+/* 가운데에서 그려지는 X-Check 로고 */
+.cx-logo {
+  position: relative; z-index: 1;
+  width: clamp(96px, 16vmin, 140px); height: auto;
+  overflow: visible;
+}
+
+.cx-loader__text {
+  position: absolute; left: 0; right: 0; bottom: clamp(40px, 10vh, 88px);
+  display: flex; justify-content: center; gap: 14px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .24em; color: var(--text-2);
+}
+.cx-loader__pct { min-width: 4ch; color: var(--mint-d); }
+
+.cx-loader__brand {
+  position: absolute; top: 28px; left: 0; right: 0; text-align: center;
+  font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: .4em; color: rgba(18,48,43,.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cx-loader { animation-delay: 0s; }
+}
